@@ -1,0 +1,86 @@
+{"objects": [
+    {
+        "comment": "// bottom wall",
+        "type": "box", 
+        "minCorner": [-40, -30, 15],
+        "maxCorner": [40, -15, 17],
+        "material": {
+            "color": [0.3, 0.4, 0.4]
+        }
+    },
+    {
+        "comment": "// top wall",
+        "type": "box", 
+        "minCorner": [-40, 15, 15],
+        "maxCorner": [40, 30, 17],
+        "material": {
+            "color": [0.3, 0.4, 0.4]
+        }
+    },
+    {
+        "comment": "// right wall",
+        "type": "box", 
+        "minCorner": [10, -30, 15],
+        "maxCorner": [40, 30, 17],
+        "material": {
+            "color": [0.3, 0.4, 0.4]
+        }
+    },
+    {
+        "comment": "// left wall",
+        "type": "box", 
+        "minCorner": [-40, -30, 15],
+        "maxCorner": [-10, 30, 17],
+        "material": {
+            "color": [0.3, 0.4, 0.4]
+        }
+    },
+    {
+        "comment": "// sky",
+        "type": "box", 
+        "minCorner": [-40, -30, 30],
+        "maxCorner": [40, 30, 35],
+        "material": {
+            "color": [0.3, 0.4, 0.9]
+        }
+    },
+    
+    
+    
+    
+    {
+        "comment": "// the top of the cornell box",
+        "type": "plane",
+        "normal": [0, 1, 0],
+        "dist": 30,
+        "material": {
+            "type": "PHONGMATERIAL",
+            "shininess": 500,
+            "color": [0.7, 0.7, 0.7]
+        }
+    }
+
+],
+
+"lights": [
+    {
+        "pos": [5, 16, 25],
+        "color": [0.9, 0.9, 1],
+        "intensity": 30,
+        "attenuate": 1
+    },
+    {
+        "pos": [20, -10, -20],
+        "color": [1, 0.9, 0.8],
+        "intensity": 25,
+        "attenuate": 1
+    },
+    {
+        "pos": [-20, -10, -20],
+        "color": [1, 0.9, 0.8],
+        "intensity": 25,
+        "attenuate": 1
+    }
+   
+]
+}

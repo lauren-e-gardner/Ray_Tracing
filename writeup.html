@@ -1,0 +1,182 @@
+<html>
+<head>
+    <title> COS426 Assignment 3 Rendering &mdash; Ray Tracer &mdash; Writeup</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body>
+<script src="js/student.js"> </script>
+<script src="coursejs/writeup.js"> </script>
+<div class="top">
+<div class="main_div">
+
+<h1> <div class=assignment>COS426 Assignment 3</div> Ray Tracer &mdash; Writeup</h1>
+<h2>Switch to: <a href='index.html'>Interactive Editor</a></h2>
+<br>
+LATE DAYS USED: 1
+<br>
+<br>
+<div id='collaboration'>
+    <div>
+    Collaboration Statement:
+    </div>
+        <br>
+    <div>
+        <em>
+            Under penalty of academic dishonesty (as outlined in RRR)
+            my digital signature below verifies that the following is true:
+            <ul>
+                <p>
+                    That all images in this writeup were generated directly by my solution code
+                    or provided by the course staff (exception: art contest submissions
+                    may pass through intermediary software like GIMP)
+                </p>
+                <p>
+                    That no other student has viewed my writeup explanations
+                    or my writeup images
+                </p>
+                <p>
+                    That my solution code is my own work; particularly that
+                    my solution was not copied from any other
+                    student's solution code, and that no other student
+                    copied their solution directly code from me
+                </p>
+                <p>
+                    That I did not discuss assignment specifics or view
+                    the solution code of any other student besides that of my (optional) partner
+                </p>
+                <p>
+                    That I have followed all other course collaboration
+                    and course plagiarism policies as written on the course website.
+                </p>
+            </ul>
+        </em>
+        <p>
+            <strong>
+                Lauren Gardner  leg3
+            </strong>
+        </p>
+
+        <p>
+            Collaborated with: Warren Quan wquan
+        </p>
+        <br>
+    </div>
+</div>
+<div class='selectable'>
+<h2 id='student'></h2>
+
+<ul>
+<li>(1.0) <a href='#TraceRay'>Trace Ray and Calculate Color</a></li>
+<li>(2.0) <a href='#Triangle'>Triangle</a></li>
+<li>(2.0) <a href='#Sphere'>Sphere</a></li>
+<li>(2.5) <a href='#Box'>Box</a></li>
+<li>(3.0) <a href='#Cone'>Cone</a></li>
+<li>(1.0) <a href='#Shadows'>Shadows</a></li>
+<li>(3.0) <a href='#Soft+shadows'>Soft shadows</a></li>
+<li>(2.0) <a href='#Transmission'>Transmission</a></li>
+<li>(1.0) <a href='#Checkerboard'>Checkerboard</a></li>
+<li>(1.5) <a href='#Phong+material'>Phong material</a></li>
+<li>(1.5) <a href='#Special+material'>Special material</a></li>
+</ul></div>
+
+<p><hr><p><a name='Trace Ray and Calculate Color'></a><h2>TraceRay</h2><p><hr><p>
+<p>For the first part of the assignment, I followed the provided
+instructions to complete the <code>traceRay</code> and <code>calculateColor</code>
+functions.</p> I used the rayIntersectScene function to  find an intersection and then calculated the resulting color depending on if the object was reflective or not.
+<p>
+<img src='results/raytrace.png'>
+<p>
+
+<p><hr><p><a name='Triangle'></a><h2>Triangle</h2><p><hr><p>
+I first found the normal of the triangle using the points passed in, calculated the distance, and used findIntersectionWithPlane to find the point of intersection. I then used the second method from the lecture slides to determine if the point was within the triangle or not.
+<p>
+    <img src='results/tri1.png'>
+<p>
+<p>
+<img src='results/tri2.png'>
+<p>
+
+<p><hr><p><a name='Sphere'></a><h2>Sphere</h2><p><hr><p>
+Using the geometric method provided in the lecture slides, I coded findIntersectionWithSphere. I made sure to return the closest intersection point at the end of the calculations.
+<p>
+    <img src='results/sphere.png'>
+<p>
+
+<p><hr><p><a name='Box'></a><h2>Box</h2><p><hr><p>
+I first declared a helper function called pointInBox that took in the current pmin, pmax, and intersection point. I took these in as vec2 objects because the box is axis aligned. Using these points I just checked that the point was within their bounds and returned true/false accordingly. As for the box implementation, I used findIntersectionWithPlane to find the intersection point, I then checked if it was the closer point or not. Since the box is axis aligned, I went through all axis pairs and ran these tests on them.
+<p>
+    <img src='results/box1.png'>
+<p>
+    close up
+<p>
+    <img src='results/box2.png'>
+<p>
+
+<p><hr><p><a name='Cone'></a><h2>Cone</h2><p><hr><p>
+I implemented cone by carefully following the section description on the assingment page. After setting the variables and calculating the quadradtic form, I then verified that an intersection was found and computed the normal for that point. As for getIntersectDisc, I used findIntersectionWithPath to identify the intersection, and used the formula given in the cylinder spec to determine if it is a valid intersection point.
+<p>
+    <img src='results/cone1.png'>
+<p>
+    close up
+<p>
+    <img src='results/cone2.png'>
+<p>
+
+<p><hr><p><a name='Shadows'></a><h2>Shadows</h2><p><hr><p>
+I started by tracing a ray from the point in question to the light. I then compared the distance between the point and the light, and the distance between the point and the intersection if there was one. If the intersection distance was greater than the distance to the light, then the point is NOT in shadow. If it was less then the distance to the light, that means the light is blocked by an object and the point is in shadow.
+<p>
+    <img src='results/shadow1.png'>
+<p>
+    close up
+<p>
+    <img src='results/shadow2.png'>
+<p>
+
+<p><hr><p><a name='Soft+shadows'></a><h2>Soft shadows</h2><p><hr><p>
+I first started by coding the helper function 'rand' using the referenced link in the assingment description. I then used the other referenced link to code the sampling along a sphere. I returned to number of points in light divided by the number sampled.
+<p>
+    <img src='results/soft1.png'>
+<p>
+    close up
+<p>
+    <img src='results/soft2.png'>
+<p>
+
+<p><hr><p><a name='Transmission'></a><h2>Transmission</h2><p><hr><p>
+I computed the refraction value using Snell's law from the lecture slides as recommended.
+<p>
+    <img src='results/trans1.png'>
+<p>
+    Here's an example of it with my special material.
+    <p>
+        <img src='results/trans2.png'>
+    <p>
+
+<p><hr><p><a name='Checkerboard'></a><h2>Checkerboard</h2><p><hr><p>
+I first round the intersection and divided the x, y, and z values. I gathered the sum of all of these and then divided by 2 to determine which color that point would be.
+<p>
+    <img src='results/check1.png'>
+<p>
+
+<p><hr><p><a name='Phong+material'></a><h2>Phong material</h2><p><hr><p>
+I calculated the phong term using the formula provided in the lecture slides and returned the phong value.
+<p>
+    <img src='results/phong1.png'>
+<p>
+    Close up to the matte sphere.
+    <p>
+        <img src='results/phong2.png'>
+    <p>
+
+<p><hr><p><a name='Special+material'></a><h2>Special material</h2><p><hr><p>
+While trying to code checkerboard I discovered this weird texture. It happened when I was trying a different implementation for checkerboard that only worked 2 dimensionally. In an attempt to make it work in 3 dimensions I multiplied two of the points together. 
+<p>
+    <img src='results/special.png'>
+<p>
+It looks even cooler when moving the camera, the star like shapes start to shake and look like flashing stars.
+
+</div>
+</div>
+</body>
+</html>
