@@ -1,4 +1,4 @@
-# 3D Graphics Editor
+# Ray Tracing
 
 <img width="800" alt="special" src="https://github.com/lauren-e-gardner/Ray_Tracing/assets/157167532/0167a0be-b68e-486b-9bf7-4082c77d5c03">
 
